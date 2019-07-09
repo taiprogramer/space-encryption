@@ -1,0 +1,12 @@
+File in Java:
+- https://www.caveofprogramming.com/java/java-file-reading-and-writing-files-in-java.html
+- https://www.baeldung.com/java-write-to-file
+Convert char array to string Java
+- https://www.techiedelight.com/convert-char-array-string-java/
+Multi-language support
+- https://docs.oracle.com/javase/tutorial/i18n/intro/after.html
+- https://stackoverflow.com/questions/12986234/cant-find-bundle-for-base-name-bundle-locale-en-us
+Event State Changed Handler
+- https://stackoverflow.com/questions/1424738/detecting-a-jradiobutton-state-change
+Remove Unused Event Handler Netbeans
+- https://stackoverflow.com/questions/7574490/how-to-remove-actionperformed-methods-in-netbeans
