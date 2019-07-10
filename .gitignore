@@ -35,5 +35,6 @@ hs_err_pid*
 nbproject/*
 !nbproject/project.properties
 !nbproject/project.xml
+!nbproject/build-impl.xml
 dist/
 build/
