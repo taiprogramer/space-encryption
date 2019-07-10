@@ -69,7 +69,7 @@ public class MainApp extends javax.swing.JFrame {
         jRadioButtonMenuItemEnglish = new javax.swing.JRadioButtonMenuItem();
         jMenuAbout = new javax.swing.JMenu();
 
-        jFileChooser.setCurrentDirectory(new File(System.getProperty("user.home") + "/Desktop"));
+        jFileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Space Encryption");
