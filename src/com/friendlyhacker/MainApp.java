@@ -40,10 +40,6 @@ public class MainApp extends javax.swing.JFrame {
      */
     public MainApp() {
         initComponents();
-        // group radio button for radio button effect :D
-        // temporary place it here.
-        buttonGroupLanguages.add(jRadioButtonMenuItemEnglish);
-        buttonGroupLanguages.add(jRadioButtonMenuItemVietnamese);
     }
 
     /**
@@ -127,6 +123,9 @@ public class MainApp extends javax.swing.JFrame {
 
         jMenuLanguage.setText("Language");
 
+        buttonGroupLanguages.add(jRadioButtonMenuItemEnglish);
+        buttonGroupLanguages.add(jRadioButtonMenuItemVietnamese);
+        
         jRadioButtonMenuItemVietnamese.setText("Vietnamese");
         jRadioButtonMenuItemVietnamese.setName("language"); // NOI18N
         jRadioButtonMenuItemVietnamese.addItemListener(new java.awt.event.ItemListener() {
