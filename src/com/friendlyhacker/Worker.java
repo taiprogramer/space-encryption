@@ -24,7 +24,7 @@ public class Worker extends Core {
     public static boolean is_encrypted_file(File file) {
         boolean output = false;
         String line;
-        String space_encryption_hash = generate_space_encryption_hash();
+        String space_encryption_hash = generate_space_encryption_sign();
         try {
             // Always wrap FileReader in BufferedReader.
             BufferedReader bufferedReader
@@ -51,7 +51,7 @@ public class Worker extends Core {
 
     public static boolean start_encrypt(File file, String password) {
         /* Configuration */
-        String space_encryption_hash = generate_space_encryption_hash();
+        String space_encryption_hash = generate_space_encryption_sign();
         String random_password = generate_random_password();
         String encrypted_random_password, encrypted_password;
         int password_hash = hash_password(password); // #1
