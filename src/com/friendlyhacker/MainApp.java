@@ -7,11 +7,11 @@ package com.friendlyhacker;
 
 import java.io.File;
 import javax.swing.JFileChooser;
-import static com.friendlyhacker.Worker.*;
 import java.awt.event.ItemEvent;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
+import static com.friendlyhacker.Worker.*;
 
 /**
  *
@@ -19,11 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class MainApp extends javax.swing.JFrame {
 
-    /**
-     * Declare global variables
-     */
     private static File selectedFile = null;
-    // Notify Content
     private static String please_select_file_label = "Please select file!";
     private static String encrypt_success_label = "Encrypt successfully.";
     private static String decrypt_success_label = "Decrypt successfully.";
@@ -34,7 +30,6 @@ public class MainApp extends javax.swing.JFrame {
     private static String already_encrypted_label = "This file already encrypted!";
     private static String not_encrypted_file_label = "This file is not encrypted.";
     private static String wrong_password_label = "Password you've typed is not correct.";
-    // Project Info
     private static String about_label
             = "A simple text-file encryption tool written in Java.\n"
             + "Team: Friendly Hacker\n"
@@ -223,11 +218,10 @@ public class MainApp extends javax.swing.JFrame {
         // TODO add your handling code here:
         // test open file
         int result = jFileChooser.showOpenDialog(this);
-        if (JFileChooser.APPROVE_OPTION == result) {
+        if (result == JFileChooser.APPROVE_OPTION) {
             selectedFile = jFileChooser.getSelectedFile();
             jTextFieldPathFile.setText(selectedFile.getAbsolutePath());
         }
-
     }//GEN-LAST:event_jButtonChooseFileActionPerformed
 
     private void jButtonEncryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncryptActionPerformed
@@ -322,7 +316,6 @@ public class MainApp extends javax.swing.JFrame {
         already_encrypted_label = messages.getString("already_encrypted_label");
         not_encrypted_file_label = messages.getString("not_encrypted_file_label");
         wrong_password_label = messages.getString("wrong_password_label");
-        // Project about
         about_label = messages.getString("about_label");
     }
 
