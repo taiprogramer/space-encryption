@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author HuynhVanTai
  */
-public class Worker extends Base {
+public class Worker extends Core {
 
     public static boolean is_encrypted_file(File file) {
         boolean output = false;

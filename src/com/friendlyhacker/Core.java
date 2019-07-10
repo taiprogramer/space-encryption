@@ -11,7 +11,7 @@ package com.friendlyhacker;
  */
 import java.util.Random;
 
-public class Base {
+public class Core {
 
     private static final String CHARACTER_LIST = " !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\t";
     private static final int LENGTH_OF_CHARACTER_LIST = CHARACTER_LIST.length();

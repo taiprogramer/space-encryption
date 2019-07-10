@@ -9,7 +9,7 @@ package com.friendlyhacker;
  *
  * @author HuynhVanTai
  */
-public class TestBase extends Base {
+public class TestCore extends Core {
 
     private static final String PASSWORD_FOR_TEST = "9mfkF.YU7=}:";
     private static final String CHARACTER_LIST = " !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\t";
