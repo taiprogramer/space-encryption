@@ -19,7 +19,7 @@ public class Core {
     /**
      * Turn original char to encrypted char and vice versa
      */
-    protected static char toggle_char(char input_char, int hash_code) {
+    private static char toggleChar(char input_char, int hash_code) {
         int index = CHARACTER_LIST.indexOf(input_char);
         return CHARACTER_LIST.charAt((hash_code - index) % LENGTH_OF_CHARACTER_LIST);
     }
@@ -27,7 +27,7 @@ public class Core {
     /**
      * Generate random string password
      */
-    protected static String generate_random_password() {
+    public static String generateRandomPassword() {
         String output = "";
         int password_length = 34;
         for (int i = 0; i < password_length; i++) {
@@ -41,7 +41,7 @@ public class Core {
      * Hash string password
      * @return hashcode in range(max_index(CHARACTER_LIST); max_index(CHARACTER_LIST) * 2)
      */
-    protected static int hash_password(String password) {
+    public static int hashPassword(String password) {
         int hash_code, sum = 0;
         for (int i = 0; i < password.length(); i++) {
             sum += password.charAt(i);
@@ -53,20 +53,20 @@ public class Core {
     /**
      * Turn original string to encrypted string and vice versa
      */
-    protected static String toggle_string(String input_str, int hash_code) {
+    public static String toggleString(String input_str, int hash_code) {
         String output = "";
         for (int i = 0; i < input_str.length(); i++) {
-            output += toggle_char(input_str.charAt(i), hash_code);
+            output += toggleChar(input_str.charAt(i), hash_code);
         }
         return output;
     }
 
     /**
      * Generate Space Encryption Sign 
-     * - place on top of file to decribe it's encrypted file
+     * - place on top of file to describe it's encrypted file
      */
-    protected static String generate_space_encryption_sign() {
+    public static String generateSpaceEncryptionSign() {
         String space_encryption = "Space Encryption - Friendly Hacker";
-        return toggle_string(space_encryption, hash_password(space_encryption));
+        return toggleString(space_encryption, hashPassword(space_encryption));
     }
 }

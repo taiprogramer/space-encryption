@@ -230,11 +230,11 @@ public class MainApp extends javax.swing.JFrame {
         } else {
             if (!selectedFile.exists()){
                 jLabelStatus.setText(file_not_found_label);
-            }else if (is_encrypted_file(selectedFile)) {
+            }else if (isEncryptedFile(selectedFile)) {
                 jLabelStatus.setText(already_encrypted_label);
             } else {
                 jLabelStatus.setText(encrypting_label);
-                boolean result = start_encrypt(selectedFile, new String(jPasswordField.getPassword()));
+                boolean result = startEncrypt(selectedFile, new String(jPasswordField.getPassword()));
                 if (result) {
                     jLabelStatus.setText(encrypt_success_label);
                 } else {
@@ -250,15 +250,15 @@ public class MainApp extends javax.swing.JFrame {
         } else {
             if (!selectedFile.exists()){
                 jLabelStatus.setText(file_not_found_label);
-            }else if (!is_encrypted_file(selectedFile)) {
+            }else if (!isEncryptedFile(selectedFile)) {
                 jLabelStatus.setText(not_encrypted_file_label);
             } else {
-                if (!is_password_correct(
+                if (!isPasswordCorrect(
                         selectedFile, new String(jPasswordField.getPassword()))) {
                     jLabelStatus.setText(wrong_password_label);
                 } else {
                     jLabelStatus.setText(decrypting_label);
-                    boolean result = start_decrypt(selectedFile, new String(jPasswordField.getPassword()));
+                    boolean result = startDecrypt(selectedFile, new String(jPasswordField.getPassword()));
                     if (result) {
                         jLabelStatus.setText(decrypt_success_label);
                     } else {

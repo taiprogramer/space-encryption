@@ -5,6 +5,8 @@
  */
 package com.friendlyhacker;
 
+import static com.friendlyhacker.Core.*;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,12 +21,12 @@ import java.util.logging.Logger;
  *
  * @author HuynhVanTai
  */
-public class Worker extends Core {
+public class Worker {
 
-    public static boolean is_encrypted_file(File file) {
+    public static boolean isEncryptedFile(File file) {
         boolean output = false;
         String line;
-        String space_encryption_hash = generate_space_encryption_sign();
+        String space_encryption_hash = generateSpaceEncryptionSign();
         try {
             // Always wrap FileReader in BufferedReader.
             BufferedReader bufferedReader
@@ -49,16 +51,16 @@ public class Worker extends Core {
         return output;
     }
 
-    public static boolean start_encrypt(File file, String password) {
+    public static boolean startEncrypt(File file, String password) {
         /* Configuration */
-        String space_encryption_hash = generate_space_encryption_sign();
-        String random_password = generate_random_password();
+        String space_encryption_hash = generateSpaceEncryptionSign();
+        String random_password = generateRandomPassword();
         String encrypted_random_password, encrypted_password;
-        int password_hash = hash_password(password); // #1
-        int random_password_hash = hash_password(random_password); // #2
+        int password_hash = hashPassword(password); // #1
+        int random_password_hash = hashPassword(random_password); // #2
 
-        encrypted_random_password = toggle_string(random_password, password_hash);
-        encrypted_password = toggle_string(password, random_password_hash);
+        encrypted_random_password = toggleString(random_password, password_hash);
+        encrypted_password = toggleString(password, random_password_hash);
 
         String file_separator = System.getProperty("file.separator");
         String encrypted_file_path = file.getParent()
@@ -85,7 +87,7 @@ public class Worker extends Core {
             printWriter.println(encrypted_password);
 
             while ((line = bufferedReader.readLine()) != null) {
-                encrypted_line = toggle_string(line, random_password_hash);
+                encrypted_line = toggleString(line, random_password_hash);
                 printWriter.println(encrypted_line);
             }
 
@@ -98,13 +100,13 @@ public class Worker extends Core {
         return true;
     }
 
-    public static boolean is_password_correct(File file, String user_password) {
+    public static boolean isPasswordCorrect(File file, String user_password) {
         boolean output = false;
         String encrypted_random_password;
         String original_random_password;
         String encrypted_password;
         String original_password;
-        int user_password_hash = hash_password(user_password); // #1
+        int user_password_hash = hashPassword(user_password); // #1
         int random_password_hash; // #2
 
         BufferedReader bufferedReader = null;
@@ -116,13 +118,13 @@ public class Worker extends Core {
             encrypted_random_password = bufferedReader.readLine();
             encrypted_password = bufferedReader.readLine();
 
-            original_random_password = toggle_string(
+            original_random_password = toggleString(
                     encrypted_random_password,
                     user_password_hash
             );
-            random_password_hash = hash_password(original_random_password);
+            random_password_hash = hashPassword(original_random_password);
 
-            original_password = toggle_string(
+            original_password = toggleString(
                     encrypted_password,
                     random_password_hash
             );
@@ -138,10 +140,10 @@ public class Worker extends Core {
         return output;
     }
 
-    public static boolean start_decrypt(File file, String password) {
+    public static boolean startDecrypt(File file, String password) {
         /* Configuration */
         String encrypted_random_password, original_random_password;
-        int password_hash = hash_password(password); // #1
+        int password_hash = hashPassword(password); // #1
         int random_password_hash; // #2
         String decrypted_file_path = file.getPath();
         decrypted_file_path = decrypted_file_path.replaceAll("sefh", "de");
@@ -159,13 +161,13 @@ public class Worker extends Core {
             bufferedReader.readLine();
             encrypted_random_password = bufferedReader.readLine();
             bufferedReader.readLine(); // this is password line
-            original_random_password = toggle_string(
+            original_random_password = toggleString(
                     encrypted_random_password,
                     password_hash
             );
-            random_password_hash = hash_password(original_random_password);
+            random_password_hash = hashPassword(original_random_password);
             while ((line = bufferedReader.readLine()) != null) {
-                printWriter.println(toggle_string(line, random_password_hash));
+                printWriter.println(toggleString(line, random_password_hash));
             }
             printWriter.close();
             bufferedReader.close();
