@@ -31,6 +31,7 @@ public class MainApp extends javax.swing.JFrame {
     private static String already_encrypted_label = "This file already encrypted!";
     private static String not_encrypted_file_label = "This file is not encrypted.";
     private static String wrong_password_label = "Password you've typed is not correct.";
+    private static String file_not_found_label = "File not found!";
     private static String about_label
             = "A simple text-file encryption tool written in Java.\n"
             + "Team: Friendly Hacker\n"
@@ -227,7 +228,9 @@ public class MainApp extends javax.swing.JFrame {
         if (selectedFile == null) {
             jLabelStatus.setText(please_select_file_label);
         } else {
-            if (is_encrypted_file(selectedFile)) {
+            if (!selectedFile.exists()){
+                jLabelStatus.setText(file_not_found_label);
+            }else if (is_encrypted_file(selectedFile)) {
                 jLabelStatus.setText(already_encrypted_label);
             } else {
                 jLabelStatus.setText(encrypting_label);
@@ -245,7 +248,9 @@ public class MainApp extends javax.swing.JFrame {
         if (selectedFile == null) {
             jLabelStatus.setText(please_select_file_label);
         } else {
-            if (!is_encrypted_file(selectedFile)) {
+            if (!selectedFile.exists()){
+                jLabelStatus.setText(file_not_found_label);
+            }else if (!is_encrypted_file(selectedFile)) {
                 jLabelStatus.setText(not_encrypted_file_label);
             } else {
                 if (!is_password_correct(
@@ -315,6 +320,7 @@ public class MainApp extends javax.swing.JFrame {
         already_encrypted_label = messages.getString("already_encrypted_label");
         not_encrypted_file_label = messages.getString("not_encrypted_file_label");
         wrong_password_label = messages.getString("wrong_password_label");
+        file_not_found_label = messages.getString("file_not_found_label");
         about_label = messages.getString("about_label");
     }
 
