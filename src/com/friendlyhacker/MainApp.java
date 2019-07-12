@@ -6,6 +6,7 @@
 package com.friendlyhacker;
 
 import static com.friendlyhacker.Encrypter.*;
+import static com.friendlyhacker.Decrypter.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +17,8 @@ import java.awt.event.ItemEvent;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
+
+import com.friendlyhacker.Decrypter.DecrypterStatus;
 
 /**
  *
@@ -248,7 +251,25 @@ public class MainApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEncryptActionPerformed
 
     private void jButtonDecryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDecryptActionPerformed
-       
+        if (selectedFile == null){
+            jLabelStatus.setText(please_select_file_label);
+            return;
+        }
+        jLabelStatus.setText(decrypting_label);
+        try {
+            DecrypterStatus result = decrypt(selectedFile, new String(jPasswordField.getPassword()));
+            if (result == DecrypterStatus.SUCCESS){
+                jLabelStatus.setText(decrypt_success_label);
+            }else if (result == DecrypterStatus.NOT_ENCRYPTED_FILE){
+                jLabelStatus.setText(not_encrypted_file_label);
+            }else if (result == DecrypterStatus.WRONG_PASSWORD){
+                jLabelStatus.setText(wrong_password_label);
+            }
+        } catch (FileNotFoundException ex) {
+            jLabelStatus.setText(file_not_found_label);
+        } catch (IOException ex){
+            jLabelStatus.setText(decrypt_fail_label);
+        }
     }//GEN-LAST:event_jButtonDecryptActionPerformed
 
     private void jMenuAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAboutMouseClicked
