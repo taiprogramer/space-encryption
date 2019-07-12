@@ -28,7 +28,7 @@ class Decrypter {
         try (BufferedReader bufferedReader = 
             new BufferedReader(new FileReader(file))){
                 // get encrypt information when encrypted file
-            for(int i = 0; i < numberOfLinesThatHoldInfo; i++){
+            for(int i = 1; i < numberOfLinesThatHoldInfo; i++){
                 if ((line = bufferedReader.readLine()) != null){
                     encryptInfo[i] = line;
                 }else {
