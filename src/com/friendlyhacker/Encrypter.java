@@ -19,7 +19,7 @@ public class Encrypter {
     public static EncryptionStatus encrypt(File file, String password)
     throws FileNotFoundException, IOException {
         // hold data that read from file.
-        String line; 
+        String line;
         // FileNotFoundException
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
             // check is encrypted file
@@ -59,6 +59,8 @@ public class Encrypter {
                 printWriter.println(generateSpaceEncryptionSign());
                 printWriter.println(encryptedRandomPassword);
                 printWriter.println(toggleString(password, randomPasswordHash));
+                // write encrypted of first line
+                printWriter.println(toggleString(line, randomPasswordHash));
 
                 while((line = bufferedReader.readLine()) != null){
                     printWriter.println(toggleString(line, randomPasswordHash));
