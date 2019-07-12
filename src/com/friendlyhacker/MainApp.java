@@ -61,7 +61,6 @@ public class MainApp extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser = new javax.swing.JFileChooser();
-        buttonGroupLanguages = new javax.swing.ButtonGroup();
         jButtonChooseFile = new javax.swing.JButton();
         jTextFieldPathFile = new javax.swing.JTextField();
         jButtonEncrypt = new javax.swing.JButton();
@@ -131,12 +130,10 @@ public class MainApp extends javax.swing.JFrame {
         jMenuBar.add(jMenuFile);
 
         jMenuLanguage.setText("Language");
+        jMenuLanguage.setName(""); // NOI18N
 
-        buttonGroupLanguages.add(jRadioButtonMenuItemEnglish);
-        buttonGroupLanguages.add(jRadioButtonMenuItemVietnamese);
-        
         jRadioButtonMenuItemVietnamese.setText("Vietnamese");
-        jRadioButtonMenuItemVietnamese.setName("language"); // NOI18N
+        jRadioButtonMenuItemVietnamese.setName(""); // NOI18N
         jRadioButtonMenuItemVietnamese.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jRadioButtonMenuItemVietnameseItemStateChanged(evt);
@@ -146,7 +143,7 @@ public class MainApp extends javax.swing.JFrame {
 
         jRadioButtonMenuItemEnglish.setSelected(true);
         jRadioButtonMenuItemEnglish.setText("English");
-        jRadioButtonMenuItemEnglish.setName("language"); // NOI18N
+        jRadioButtonMenuItemEnglish.setName(""); // NOI18N
         jRadioButtonMenuItemEnglish.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jRadioButtonMenuItemEnglishItemStateChanged(evt);
@@ -365,7 +362,6 @@ public class MainApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroupLanguages;
     private javax.swing.JButton jButtonChooseFile;
     private javax.swing.JButton jButtonDecrypt;
     private javax.swing.JButton jButtonEncrypt;
