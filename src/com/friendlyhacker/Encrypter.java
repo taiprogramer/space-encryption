@@ -46,7 +46,7 @@ public class Encrypter {
             String randomPassword = generateRandomPassword();
             // encrypted random password via hash code of password -> #1
             String encryptedRandomPassword = toggleString(randomPassword, hashPassword(password)); 
-            // get random password hash for encrypt everything còn lại :D
+            // get random password hash for encrypt everything
             // such as: password, content of file -> #2
             int randomPasswordHash = hashPassword(randomPassword);
             // encrypted line by line, write to file via PrintWriter
