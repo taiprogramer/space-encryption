@@ -236,6 +236,7 @@ public class MainApp extends javax.swing.JFrame {
             jLabelStatus.setText(please_select_file_label);
             return;
         }
+        jLabelStatus.setText(encrypting_label);
         try {
             EncryptionStatus result = encrypt(selectedFile, new String(jPasswordField.getPassword()));
             if (result == EncryptionStatus.SUCCESS){
