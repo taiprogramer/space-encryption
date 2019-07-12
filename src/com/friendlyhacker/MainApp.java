@@ -5,13 +5,17 @@
  */
 package com.friendlyhacker;
 
+import static com.friendlyhacker.Encrypter.*;
+
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import javax.swing.JFileChooser;
 import java.awt.event.ItemEvent;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
-import static com.friendlyhacker.Worker.*;
 
 /**
  *
@@ -225,48 +229,26 @@ public class MainApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonChooseFileActionPerformed
 
     private void jButtonEncryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncryptActionPerformed
-        if (selectedFile == null) {
+        if (selectedFile == null){
             jLabelStatus.setText(please_select_file_label);
-        } else {
-            if (!selectedFile.exists()){
-                jLabelStatus.setText(file_not_found_label);
-            }else if (isEncryptedFile(selectedFile)) {
+            return;
+        }
+        try {
+            EncryptionStatus result = encrypt(selectedFile, new String(jPasswordField.getPassword()));
+            if (result == EncryptionStatus.SUCCESS){
+                jLabelStatus.setText(encrypt_success_label);
+            }else if (result == EncryptionStatus.ALREADY_ENCRYPTED){
                 jLabelStatus.setText(already_encrypted_label);
-            } else {
-                jLabelStatus.setText(encrypting_label);
-                boolean result = startEncrypt(selectedFile, new String(jPasswordField.getPassword()));
-                if (result) {
-                    jLabelStatus.setText(encrypt_success_label);
-                } else {
-                    jLabelStatus.setText(encrypt_fail_label);
-                }
             }
+        } catch (FileNotFoundException ex) {
+            jLabelStatus.setText(file_not_found_label);
+        } catch (IOException ex){
+            jLabelStatus.setText(encrypt_fail_label);
         }
     }//GEN-LAST:event_jButtonEncryptActionPerformed
 
     private void jButtonDecryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDecryptActionPerformed
-        if (selectedFile == null) {
-            jLabelStatus.setText(please_select_file_label);
-        } else {
-            if (!selectedFile.exists()){
-                jLabelStatus.setText(file_not_found_label);
-            }else if (!isEncryptedFile(selectedFile)) {
-                jLabelStatus.setText(not_encrypted_file_label);
-            } else {
-                if (!isPasswordCorrect(
-                        selectedFile, new String(jPasswordField.getPassword()))) {
-                    jLabelStatus.setText(wrong_password_label);
-                } else {
-                    jLabelStatus.setText(decrypting_label);
-                    boolean result = startDecrypt(selectedFile, new String(jPasswordField.getPassword()));
-                    if (result) {
-                        jLabelStatus.setText(decrypt_success_label);
-                    } else {
-                        jLabelStatus.setText(decrypt_fail_label);
-                    }
-                }
-            }
-        }
+       
     }//GEN-LAST:event_jButtonDecryptActionPerformed
 
     private void jMenuAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAboutMouseClicked

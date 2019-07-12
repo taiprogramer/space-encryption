@@ -7,7 +7,7 @@ package com.friendlyhacker;
 
 /**
  *
- * @author HuynhVanTai
+ * @author taiprogramer
  */
 import java.util.Random;
 
