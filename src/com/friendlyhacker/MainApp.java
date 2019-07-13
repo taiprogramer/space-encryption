@@ -5,20 +5,22 @@
  */
 package com.friendlyhacker;
 
-import static com.friendlyhacker.Encrypter.*;
-import static com.friendlyhacker.Decrypter.*;
+import static com.friendlyhacker.Decrypter.decrypt;
+import static com.friendlyhacker.Encrypter.encrypt;
 
+import java.awt.event.ItemEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.swing.JFileChooser;
-import java.awt.event.ItemEvent;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import com.friendlyhacker.Decrypter.DecrypterStatus;
+import com.friendlyhacker.Encrypter.EncryptionStatus;
+import com.friendlyhacker.i18n.components.I18NComponents;
+import com.friendlyhacker.i18n.notifications.I18NNotifications;
 
 /**
  *
@@ -28,27 +30,13 @@ public class MainApp extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 3909748189297971457L;
     private static File selectedFile = null;
-    private static String please_select_file_label = "Please select file!";
-    private static String encrypt_success_label = "Encrypt successfully.";
-    private static String decrypt_success_label = "Decrypt successfully.";
-    private static String encrypt_fail_label = "Encrypt failed.";
-    private static String decrypt_fail_label = "Decrypt failed.";
-    private static String encrypting_label = "Start encrypting...";
-    private static String decrypting_label = "Start decrypting...";
-    private static String already_encrypted_label = "This file already encrypted!";
-    private static String not_encrypted_file_label = "This file is not encrypted.";
-    private static String wrong_password_label = "Password you've typed is not correct.";
-    private static String file_not_found_label = "File not found!";
-    private static String about_label
-            = "A simple text-file encryption tool written in Java.\n"
-            + "Team: Friendly Hacker\n"
-            + "Idea: Nguyen Duy Kha.";
 
     /**
      * Creates new form MainApp
      */
     public MainApp() {
         initComponents();
+        set_languages(new Locale("", ""));
     }
 
     /**
@@ -233,49 +221,49 @@ public class MainApp extends javax.swing.JFrame {
 
     private void jButtonEncryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncryptActionPerformed
         if (selectedFile == null){
-            jLabelStatus.setText(please_select_file_label);
+            jLabelStatus.setText(I18NNotifications.pleaseSelectFileText);
             return;
         }
-        jLabelStatus.setText(encrypting_label);
+        jLabelStatus.setText(I18NNotifications.encryptingText);
         try {
             EncryptionStatus result = encrypt(selectedFile, new String(jPasswordField.getPassword()));
             if (result == EncryptionStatus.SUCCESS){
-                jLabelStatus.setText(encrypt_success_label);
+                jLabelStatus.setText(I18NNotifications.encryptSuccessText);
             }else if (result == EncryptionStatus.ALREADY_ENCRYPTED){
-                jLabelStatus.setText(already_encrypted_label);
+                jLabelStatus.setText(I18NNotifications.alreadyEncryptedText);
             }
         } catch (FileNotFoundException ex) {
-            jLabelStatus.setText(file_not_found_label);
+            jLabelStatus.setText(I18NNotifications.fileNotFoundText);
         } catch (IOException ex){
-            jLabelStatus.setText(encrypt_fail_label);
+            jLabelStatus.setText(I18NNotifications.encryptFailText);
         }
     }//GEN-LAST:event_jButtonEncryptActionPerformed
 
     private void jButtonDecryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDecryptActionPerformed
         if (selectedFile == null){
-            jLabelStatus.setText(please_select_file_label);
+            jLabelStatus.setText(I18NNotifications.pleaseSelectFileText);
             return;
         }
-        jLabelStatus.setText(decrypting_label);
+        jLabelStatus.setText(I18NNotifications.decryptingText);
         try {
             DecrypterStatus result = decrypt(selectedFile, new String(jPasswordField.getPassword()));
             if (result == DecrypterStatus.SUCCESS){
-                jLabelStatus.setText(decrypt_success_label);
+                jLabelStatus.setText(I18NNotifications.decryptSuccessText);
             }else if (result == DecrypterStatus.NOT_ENCRYPTED_FILE){
-                jLabelStatus.setText(not_encrypted_file_label);
+                jLabelStatus.setText(I18NNotifications.notEncryptedFileText);
             }else if (result == DecrypterStatus.WRONG_PASSWORD){
-                jLabelStatus.setText(wrong_password_label);
+                jLabelStatus.setText(I18NNotifications.wrongPasswordText);
             }
         } catch (FileNotFoundException ex) {
-            jLabelStatus.setText(file_not_found_label);
+            jLabelStatus.setText(I18NNotifications.fileNotFoundText);
         } catch (IOException ex){
-            jLabelStatus.setText(decrypt_fail_label);
+            jLabelStatus.setText(I18NNotifications.decryptFailText);
         }
     }//GEN-LAST:event_jButtonDecryptActionPerformed
 
     private void jMenuAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAboutMouseClicked
         JOptionPane.showMessageDialog(null,
-                about_label
+                I18NNotifications.aboutAppText
         );
     }//GEN-LAST:event_jMenuAboutMouseClicked
 
@@ -297,35 +285,19 @@ public class MainApp extends javax.swing.JFrame {
 
     /* taiprogramer's util functions */
     private void set_languages(Locale locale) {
-        ResourceBundle messages;
-        messages = ResourceBundle.getBundle(
-                "com.friendlyhacker.MessagesBundle",
-                locale
-        );
-        jMenuFile.setText(messages.getString("jMenuFile"));
-        jMenuItemChooseFile.setText(messages.getString("jMenuItemChooseFile"));
-        jMenuLanguage.setText(messages.getString("jMenuLanguage"));
-        jRadioButtonMenuItemVietnamese.setText(messages.getString("jRadioButtonMenuItemVietnamese"));
-        jRadioButtonMenuItemEnglish.setText(messages.getString("jRadioButtonMenuItemEnglish"));
-        jMenuAbout.setText(messages.getString("jMenuAbout"));
-        jLabelPassword.setText(messages.getString("jLabelPassword"));
-        jLabelStatusLabel.setText(messages.getString("jLabelStatusLabel"));
-        jButtonChooseFile.setText(messages.getString("jButtonChooseFile"));
-        jButtonEncrypt.setText(messages.getString("jButtonEncrypt"));
-        jButtonDecrypt.setText(messages.getString("jButtonDecrypt"));
-        // Notify Label
-        please_select_file_label = messages.getString("please_select_file_label");
-        encrypt_success_label = messages.getString("encrypt_success_label");
-        decrypt_success_label = messages.getString("decrypt_success_label");
-        encrypt_fail_label = messages.getString("encrypt_fail_label");
-        decrypt_fail_label = messages.getString("decrypt_fail_label");
-        encrypting_label = messages.getString("encrypting_label");
-        decrypting_label = messages.getString("decrypting_label");
-        already_encrypted_label = messages.getString("already_encrypted_label");
-        not_encrypted_file_label = messages.getString("not_encrypted_file_label");
-        wrong_password_label = messages.getString("wrong_password_label");
-        file_not_found_label = messages.getString("file_not_found_label");
-        about_label = messages.getString("about_label");
+        I18NComponents.setLanguage(locale);
+        I18NNotifications.setLanguage(locale);
+        jMenuFile.setText(I18NComponents.jMenuFileText);
+        jMenuItemChooseFile.setText(I18NComponents.jMenuItemChooseFileText);
+        jMenuLanguage.setText(I18NComponents.jMenuLanguageText);
+        jRadioButtonMenuItemVietnamese.setText(I18NComponents.jRadioButtonMenuItemVietnameseText);
+        jRadioButtonMenuItemEnglish.setText(I18NComponents.jRadioButtonMenuItemEnglishText);
+        jMenuAbout.setText(I18NComponents.jMenuAboutText);
+        jLabelPassword.setText(I18NComponents.jLabelPasswordText);
+        jLabelStatusLabel.setText(I18NComponents.jLabelStatusLabelText);
+        jButtonChooseFile.setText(I18NComponents.jButtonChooseFileText);
+        jButtonEncrypt.setText(I18NComponents.jButtonEncryptText);
+        jButtonDecrypt.setText(I18NComponents.jButtonDecryptText);
     }
 
     /**
