@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-class Decrypter {
+public class Decrypter {
 
     enum DecrypterStatus {
         NOT_ENCRYPTED_FILE, SUCCESS, WRONG_PASSWORD
