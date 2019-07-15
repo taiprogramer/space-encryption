@@ -7,7 +7,7 @@ Space Encryption is a simple text-file encryption tool.
 ## Development environment
 Here is everything you need to build Space Encryption:
 - [NetBeans 11.0](https://netbeans.apache.org/download/nb110/nb110.html) (Optional)
-- [Java 12](https://www.oracle.com/technetwork/java/javase/downloads/jdk12-downloads-5295953.html)
+- [OpenJDK 12.0.1](https://jdk.java.net/12/)
 - [Ant 1.10.5](https://ant.apache.org/)
 
 ## Build & run
