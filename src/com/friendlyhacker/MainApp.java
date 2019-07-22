@@ -313,19 +313,8 @@ public class MainApp extends javax.swing.JFrame {
 
     /* taiprogramer's util functions */
     private void set_languages(Locale locale) {
-        I18NComponents.setLanguage(locale);
+        I18NComponents.setLanguage(locale, components);
         I18NNotifications.setLanguage(locale);
-        jMenuFile.setText(I18NComponents.jMenuFileText);
-        jMenuItemChooseFile.setText(I18NComponents.jMenuItemChooseFileText);
-        jMenuLanguage.setText(I18NComponents.jMenuLanguageText);
-        jRadioButtonMenuItemVietnamese.setText(I18NComponents.jRadioButtonMenuItemVietnameseText);
-        jRadioButtonMenuItemEnglish.setText(I18NComponents.jRadioButtonMenuItemEnglishText);
-        jMenuAbout.setText(I18NComponents.jMenuAboutText);
-        jLabelPassword.setText(I18NComponents.jLabelPasswordText);
-        jLabelStatusLabel.setText(I18NComponents.jLabelStatusLabelText);
-        jButtonChooseFile.setText(I18NComponents.jButtonChooseFileText);
-        jButtonEncrypt.setText(I18NComponents.jButtonEncryptText);
-        jButtonDecrypt.setText(I18NComponents.jButtonDecryptText);
     }
 
     /**
