@@ -304,6 +304,7 @@ public class MainApp extends javax.swing.JFrame {
         jButtonChooseFile.setText(I18NComponents.jButtonChooseFileText);
         jButtonEncrypt.setText(I18NComponents.jButtonEncryptText);
         jButtonDecrypt.setText(I18NComponents.jButtonDecryptText);
+        jCheckBoxKeepOriginalFile.setText(I18NComponents.jCheckBoxKeepOriginalFileText);
     }
 
     /**

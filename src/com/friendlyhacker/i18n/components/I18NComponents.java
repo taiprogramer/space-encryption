@@ -18,6 +18,7 @@ public class I18NComponents {
     public static String jButtonChooseFileText = "";
     public static String jButtonEncryptText = "";
     public static String jButtonDecryptText = "";
+    public static String jCheckBoxKeepOriginalFileText =  "";
 
     public static void setLanguage(Locale locale){
         ResourceBundle components;
@@ -36,5 +37,6 @@ public class I18NComponents {
         jButtonChooseFileText = components.getString("jButtonChooseFile");
         jButtonEncryptText = components.getString("jButtonEncrypt");
         jButtonDecryptText = components.getString("jButtonDecrypt");
+        jCheckBoxKeepOriginalFileText =  components.getString("jCheckBoxKeepOriginalFile");
     }
 }
