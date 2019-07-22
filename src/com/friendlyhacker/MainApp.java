@@ -72,6 +72,7 @@ public class MainApp extends javax.swing.JFrame {
         setTitle("Space Encryption");
 
         jButtonChooseFile.setText("Choose File");
+        jButtonChooseFile.setName("jButtonChooseFile"); // NOI18N
         jButtonChooseFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonChooseFileActionPerformed(evt);
@@ -82,6 +83,7 @@ public class MainApp extends javax.swing.JFrame {
 
         jButtonEncrypt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonEncrypt.setText("Encrypt");
+        jButtonEncrypt.setName("jButtonEncrypt"); // NOI18N
         jButtonEncrypt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEncryptActionPerformed(evt);
@@ -90,6 +92,7 @@ public class MainApp extends javax.swing.JFrame {
 
         jButtonDecrypt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonDecrypt.setText("Decrypt");
+        jButtonDecrypt.setName("jButtonDecrypt"); // NOI18N
         jButtonDecrypt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDecryptActionPerformed(evt);
@@ -100,15 +103,19 @@ public class MainApp extends javax.swing.JFrame {
 
         jLabelPassword.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabelPassword.setText("Password:");
+        jLabelPassword.setName("jLabelPassword"); // NOI18N
 
         jPasswordField.setText("RepublicofVietNam");
 
         jLabelStatusLabel.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabelStatusLabel.setText("Status:");
+        jLabelStatusLabel.setName("jLabelStatusLabel"); // NOI18N
 
         jMenuFile.setText("File");
+        jMenuFile.setName("jMenuFile"); // NOI18N
 
         jMenuItemChooseFile.setText("Choose file");
+        jMenuItemChooseFile.setName("jMenuItemChooseFile"); // NOI18N
         jMenuItemChooseFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemChooseFileActionPerformed(evt);
@@ -119,11 +126,11 @@ public class MainApp extends javax.swing.JFrame {
         jMenuBar.add(jMenuFile);
 
         jMenuLanguage.setText("Language");
-        jMenuLanguage.setName(""); // NOI18N
+        jMenuLanguage.setName("jMenuLanguage"); // NOI18N
 
         buttonGroupLanguages.add(jRadioButtonMenuItemVietnamese);
         jRadioButtonMenuItemVietnamese.setText("Vietnamese");
-        jRadioButtonMenuItemVietnamese.setName(""); // NOI18N
+        jRadioButtonMenuItemVietnamese.setName("jRadioButtonMenuItemVietnamese"); // NOI18N
         jRadioButtonMenuItemVietnamese.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jRadioButtonMenuItemVietnameseItemStateChanged(evt);
@@ -134,7 +141,7 @@ public class MainApp extends javax.swing.JFrame {
         buttonGroupLanguages.add(jRadioButtonMenuItemEnglish);
         jRadioButtonMenuItemEnglish.setSelected(true);
         jRadioButtonMenuItemEnglish.setText("English");
-        jRadioButtonMenuItemEnglish.setName(""); // NOI18N
+        jRadioButtonMenuItemEnglish.setName("jRadioButtonMenuItemEnglish"); // NOI18N
         jRadioButtonMenuItemEnglish.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jRadioButtonMenuItemEnglishItemStateChanged(evt);
@@ -145,6 +152,7 @@ public class MainApp extends javax.swing.JFrame {
         jMenuBar.add(jMenuLanguage);
 
         jMenuAbout.setText("About");
+        jMenuAbout.setName("jMenuAbout"); // NOI18N
         jMenuAbout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenuAboutMouseClicked(evt);

@@ -16,11 +16,13 @@
         <Menu class="javax.swing.JMenu" name="jMenuFile">
           <Properties>
             <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="name" type="java.lang.String" value="jMenuFile" noResource="true"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemChooseFile">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Choose file"/>
+                <Property name="name" type="java.lang.String" value="jMenuItemChooseFile" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemChooseFileActionPerformed"/>
@@ -31,7 +33,7 @@
         <Menu class="javax.swing.JMenu" name="jMenuLanguage">
           <Properties>
             <Property name="text" type="java.lang.String" value="Language"/>
-            <Property name="name" type="java.lang.String" value="" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="jMenuLanguage" noResource="true"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="jRadioButtonMenuItemVietnamese">
@@ -40,7 +42,7 @@
                   <ComponentRef name="buttonGroupLanguages"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Vietnamese"/>
-                <Property name="name" type="java.lang.String" value="" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="jRadioButtonMenuItemVietnamese" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jRadioButtonMenuItemVietnameseItemStateChanged"/>
@@ -53,7 +55,7 @@
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="English"/>
-                <Property name="name" type="java.lang.String" value="" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="jRadioButtonMenuItemEnglish" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jRadioButtonMenuItemEnglishItemStateChanged"/>
@@ -64,6 +66,7 @@
         <Menu class="javax.swing.JMenu" name="jMenuAbout">
           <Properties>
             <Property name="text" type="java.lang.String" value="About"/>
+            <Property name="name" type="java.lang.String" value="jMenuAbout" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuAboutMouseClicked"/>
@@ -166,6 +169,7 @@
     <Component class="javax.swing.JButton" name="jButtonChooseFile">
       <Properties>
         <Property name="text" type="java.lang.String" value="Choose File"/>
+        <Property name="name" type="java.lang.String" value="jButtonChooseFile" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonChooseFileActionPerformed"/>
@@ -182,6 +186,7 @@
           <Font name="Arial" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Encrypt"/>
+        <Property name="name" type="java.lang.String" value="jButtonEncrypt" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEncryptActionPerformed"/>
@@ -193,6 +198,7 @@
           <Font name="Arial" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Decrypt"/>
+        <Property name="name" type="java.lang.String" value="jButtonDecrypt" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDecryptActionPerformed"/>
@@ -211,6 +217,7 @@
           <Font name="Arial" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Password:"/>
+        <Property name="name" type="java.lang.String" value="jLabelPassword" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasswordField">
@@ -224,6 +231,7 @@
           <Font name="Arial" size="16" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Status:"/>
+        <Property name="name" type="java.lang.String" value="jLabelStatusLabel" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
