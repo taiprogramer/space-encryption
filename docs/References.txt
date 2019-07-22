@@ -14,3 +14,7 @@ Javadoc
 - https://www.baeldung.com/javadoc
 The try-with-resources Statement
 - https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
+Store components in ArrayList
+- https://stackoverflow.com/questions/10389470/store-components-in-arraylist
+Changing text on JComponent
+- https://stackoverflow.com/questions/16721147/changing-text-on-jcomponent
