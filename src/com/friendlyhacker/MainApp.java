@@ -12,8 +12,10 @@ import java.awt.event.ItemEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
 
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -30,12 +32,16 @@ public class MainApp extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 3909748189297971457L;
     private static File selectedFile = null;
+    // list of all components -> i18n support
+    private static ArrayList<JComponent> components = new ArrayList<>();
 
     /**
      * Creates new form MainApp
      */
     public MainApp() {
         initComponents();
+        // add all components to list of components
+        storeComponents();
         set_languages(new Locale("", ""));
     }
 
@@ -217,6 +223,20 @@ public class MainApp extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void storeComponents(){
+        components.add(jMenuFile);
+        components.add(jMenuItemChooseFile);
+        components.add(jMenuLanguage);
+        components.add(jRadioButtonMenuItemVietnamese);
+        components.add(jRadioButtonMenuItemEnglish);
+        components.add(jMenuAbout);
+        components.add(jButtonChooseFile);
+        components.add(jButtonEncrypt);
+        components.add(jButtonDecrypt);
+        components.add(jLabelPassword);
+        components.add(jLabelStatusLabel);
+    }
 
     private void jButtonChooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseFileActionPerformed
         // test open file
