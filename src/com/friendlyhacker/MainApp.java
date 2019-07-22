@@ -235,6 +235,19 @@ public class MainApp extends javax.swing.JFrame {
             EncryptionStatus result = encrypt(selectedFile, new String(jPasswordField.getPassword()));
             if (result == EncryptionStatus.SUCCESS){
                 jLabelStatus.setText(I18NNotifications.encryptSuccessText);
+                // if success, keep original file option check
+                if (!jCheckBoxKeepOriginalFile.isSelected()){
+                    // rename encrypted file, override original file
+                    // get encrypted file path
+                    String encryptedFilePath = new 
+                        StringBuilder(selectedFile.getParent())
+                        .append(System.getProperty("file.separator"))
+                        .append("sefh.")
+                        .append(selectedFile.getName())
+                        .toString();
+                    File encryptedFile = new File(encryptedFilePath);
+                    encryptedFile.renameTo(selectedFile);
+                }
             }else if (result == EncryptionStatus.ALREADY_ENCRYPTED){
                 jLabelStatus.setText(I18NNotifications.alreadyEncryptedText);
             }
@@ -255,6 +268,19 @@ public class MainApp extends javax.swing.JFrame {
             DecrypterStatus result = decrypt(selectedFile, new String(jPasswordField.getPassword()));
             if (result == DecrypterStatus.SUCCESS){
                 jLabelStatus.setText(I18NNotifications.decryptSuccessText);
+                // if success, keep original file option check
+                if (!jCheckBoxKeepOriginalFile.isSelected()){
+                    // rename decrypted file, override original file
+                    // get decrypted file path
+                    String decryptedFilePath = new 
+                        StringBuilder(selectedFile.getParent())
+                        .append(System.getProperty("file.separator"))
+                        .append("de.")
+                        .append(selectedFile.getName())
+                        .toString();
+                    File decryptedFile = new File(decryptedFilePath);
+                    decryptedFile.renameTo(selectedFile);
+                }
             }else if (result == DecrypterStatus.NOT_ENCRYPTED_FILE){
                 jLabelStatus.setText(I18NNotifications.notEncryptedFileText);
             }else if (result == DecrypterStatus.WRONG_PASSWORD){
