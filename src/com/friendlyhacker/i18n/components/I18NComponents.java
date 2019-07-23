@@ -1,42 +1,41 @@
 package com.friendlyhacker.i18n.components;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JRadioButtonMenuItem;
 
 public class I18NComponents {
 
     private static final String COMPONENT_LOCATION = "com.friendlyhacker.i18n.components.Components";
-    // declare components text
-    public static String jMenuFileText = "";
-    public static String jMenuItemChooseFileText = "";
-    public static String jMenuLanguageText = "";
-    public static String jRadioButtonMenuItemVietnameseText = "";
-    public static String jRadioButtonMenuItemEnglishText = "";
-    public static String jMenuAboutText = "";
-    public static String jLabelPasswordText = "";
-    public static String jLabelStatusLabelText = "";
-    public static String jButtonChooseFileText = "";
-    public static String jButtonEncryptText = "";
-    public static String jButtonDecryptText = "";
-    public static String jCheckBoxKeepOriginalFileText =  "";
 
-    public static void setLanguage(Locale locale){
-        ResourceBundle components;
-        components = ResourceBundle.getBundle(
+    public static void setLanguage(Locale locale, ArrayList<JComponent> components){
+        ResourceBundle rbComponents;
+        rbComponents = ResourceBundle.getBundle(
                 COMPONENT_LOCATION,
                 locale
         );
-        jMenuFileText = components.getString("jMenuFile");
-        jMenuItemChooseFileText = components.getString("jMenuItemChooseFile");
-        jMenuLanguageText = components.getString("jMenuLanguage");
-        jRadioButtonMenuItemVietnameseText = components.getString("jRadioButtonMenuItemVietnamese");
-        jRadioButtonMenuItemEnglishText = components.getString("jRadioButtonMenuItemEnglish");
-        jMenuAboutText = components.getString("jMenuAbout");
-        jLabelPasswordText = components.getString("jLabelPassword");
-        jLabelStatusLabelText = components.getString("jLabelStatusLabel");
-        jButtonChooseFileText = components.getString("jButtonChooseFile");
-        jButtonEncryptText = components.getString("jButtonEncrypt");
-        jButtonDecryptText = components.getString("jButtonDecrypt");
-        jCheckBoxKeepOriginalFileText =  components.getString("jCheckBoxKeepOriginalFile");
+        for(JComponent component : components){
+            if (component instanceof JMenu){
+                ((JMenu) component).setText(rbComponents.getString(component.getName()));
+            } else if (component instanceof JMenuItem){
+                ((JMenuItem) component).setText(rbComponents.getString(component.getName()));
+            } else if (component instanceof JRadioButtonMenuItem){
+                ((JRadioButtonMenuItem) component).setText(rbComponents.getString(component.getName()));
+            } else if (component instanceof JButton){
+                ((JButton) component).setText(rbComponents.getString(component.getName()));
+            } else if (component instanceof JLabel){
+                ((JLabel) component).setText(rbComponents.getString(component.getName()));
+            } else if (component instanceof JCheckBox){
+                ((JCheckBox) component).setText(rbComponents.getString(component.getName()));
+            }
+        }
     }
 }

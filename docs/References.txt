@@ -16,3 +16,7 @@ The try-with-resources Statement
 - https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
 Rename file in Java
 - https://www.inf.unibz.it/~calvanese/teaching/04-05-ip/lecture-notes/uni08/node11.html
+Store components in ArrayList
+- https://stackoverflow.com/questions/10389470/store-components-in-arraylist
+Changing text on JComponent
+- https://stackoverflow.com/questions/16721147/changing-text-on-jcomponent
