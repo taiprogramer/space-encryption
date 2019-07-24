@@ -77,6 +77,9 @@ public class MainApp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Space Encryption");
+        setPreferredSize(new java.awt.Dimension(600, 375));
+        setResizable(false);
+        setSize(new java.awt.Dimension(600, 375));
 
         jButtonChooseFile.setText("Choose File");
         jButtonChooseFile.setName("jButtonChooseFile"); // NOI18N
@@ -202,7 +205,7 @@ public class MainApp extends javax.swing.JFrame {
                         .addComponent(jButtonEncrypt)
                         .addGap(51, 51, 51)
                         .addComponent(jButtonDecrypt)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +224,7 @@ public class MainApp extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEncrypt)
                     .addComponent(jButtonDecrypt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
