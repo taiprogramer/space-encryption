@@ -127,6 +127,11 @@ public class MainApp extends javax.swing.JFrame {
 
         jCheckBoxShowPassword.setText("Show password");
         jCheckBoxShowPassword.setName("jCheckBoxKeepOriginalFile"); // NOI18N
+        jCheckBoxShowPassword.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBoxShowPasswordItemStateChanged(evt);
+            }
+        });
 
         jMenuFile.setText("File");
         jMenuFile.setName("jMenuFile"); // NOI18N
@@ -360,6 +365,14 @@ public class MainApp extends javax.swing.JFrame {
             set_languages(new Locale("", ""));
         }
     }//GEN-LAST:event_jRadioButtonMenuItemEnglishItemStateChanged
+
+    private void jCheckBoxShowPasswordItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxShowPasswordItemStateChanged
+         if (evt.getStateChange() == ItemEvent.SELECTED) {
+            jPasswordField.setEchoChar((char) 0);
+        } else {
+            jPasswordField.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jCheckBoxShowPasswordItemStateChanged
 
     /* taiprogramer's util functions */
     private void set_languages(Locale locale) {
