@@ -20,3 +20,5 @@ Store components in ArrayList
 - https://stackoverflow.com/questions/10389470/store-components-in-arraylist
 Changing text on JComponent
 - https://stackoverflow.com/questions/16721147/changing-text-on-jcomponent
+- Display password on JPasswordField
+https://stackoverflow.com/questions/20812857/how-to-display-characters-in-jpasswordfield-rather-than-sign-in-java
