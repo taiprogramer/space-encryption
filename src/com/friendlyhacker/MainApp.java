@@ -65,6 +65,7 @@ public class MainApp extends javax.swing.JFrame {
         jPasswordField = new javax.swing.JPasswordField();
         jLabelStatusLabel = new javax.swing.JLabel();
         jCheckBoxKeepOriginalFile = new javax.swing.JCheckBox();
+        jCheckBoxShowPassword = new javax.swing.JCheckBox();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemChooseFile = new javax.swing.JMenuItem();
@@ -123,6 +124,9 @@ public class MainApp extends javax.swing.JFrame {
 
         jCheckBoxKeepOriginalFile.setText("Keep original file");
         jCheckBoxKeepOriginalFile.setName("jCheckBoxKeepOriginalFile"); // NOI18N
+
+        jCheckBoxShowPassword.setText("Show password");
+        jCheckBoxShowPassword.setName("jCheckBoxKeepOriginalFile"); // NOI18N
 
         jMenuFile.setText("File");
         jMenuFile.setName("jMenuFile"); // NOI18N
@@ -185,27 +189,34 @@ public class MainApp extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonChooseFile))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelStatusLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonChooseFile))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabelPassword)
-                        .addGap(38, 38, 38)
-                        .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(205, 205, 205)
-                        .addComponent(jCheckBoxKeepOriginalFile))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(jButtonEncrypt)
-                        .addGap(51, 51, 51)
-                        .addComponent(jButtonDecrypt)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(211, 211, 211)
+                                .addComponent(jButtonEncrypt)
+                                .addGap(51, 51, 51)
+                                .addComponent(jButtonDecrypt))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addComponent(jLabelPassword)
+                                .addGap(38, 38, 38)
+                                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jCheckBoxShowPassword)
+                .addGap(31, 31, 31)
+                .addComponent(jCheckBoxKeepOriginalFile)
+                .addGap(142, 142, 142))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,13 +229,15 @@ public class MainApp extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPassword))
-                .addGap(18, 18, 18)
-                .addComponent(jCheckBoxKeepOriginalFile)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxKeepOriginalFile)
+                    .addComponent(jCheckBoxShowPassword))
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEncrypt)
                     .addComponent(jButtonDecrypt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -396,6 +409,7 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JButton jButtonDecrypt;
     private javax.swing.JButton jButtonEncrypt;
     private javax.swing.JCheckBox jCheckBoxKeepOriginalFile;
+    private javax.swing.JCheckBox jCheckBoxShowPassword;
     private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JLabel jLabelPassword;
     private javax.swing.JLabel jLabelStatus;
