@@ -126,7 +126,7 @@ public class MainApp extends javax.swing.JFrame {
         jCheckBoxKeepOriginalFile.setName("jCheckBoxKeepOriginalFile"); // NOI18N
 
         jCheckBoxShowPassword.setText("Show password");
-        jCheckBoxShowPassword.setName("jCheckBoxKeepOriginalFile"); // NOI18N
+        jCheckBoxShowPassword.setName("jCheckBoxShowPassword"); // NOI18N
         jCheckBoxShowPassword.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCheckBoxShowPasswordItemStateChanged(evt);
@@ -265,6 +265,7 @@ public class MainApp extends javax.swing.JFrame {
         components.add(jLabelPassword);
         components.add(jLabelStatusLabel);
         components.add(jCheckBoxKeepOriginalFile);
+        components.add(jCheckBoxShowPassword);
     }
 
     private void jButtonChooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseFileActionPerformed
