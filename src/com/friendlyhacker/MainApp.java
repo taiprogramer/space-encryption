@@ -298,7 +298,19 @@ public class MainApp extends javax.swing.JFrame {
                         .append(selectedFile.getName())
                         .toString();
                     File encryptedFile = new File(encryptedFilePath);
-                    encryptedFile.renameTo(selectedFile);
+                    // try to rename & override old file
+                    boolean b = encryptedFile.renameTo(selectedFile);
+                    // if rename & override failed, do it by hand
+                    if (!b){
+                        // delete old file (selectedFile)
+                        if (selectedFile.delete()){
+                            // rename encrypted file to selected file
+                            encryptedFile.renameTo(selectedFile);
+                        }else {
+                            // handler delete failed
+                            // keep everything
+                        }
+                    }
                 }
             }else if (result == EncryptionStatus.ALREADY_ENCRYPTED){
                 jLabelStatus.setText(I18NNotifications.alreadyEncryptedText);
@@ -331,7 +343,19 @@ public class MainApp extends javax.swing.JFrame {
                         .append(selectedFile.getName())
                         .toString();
                     File decryptedFile = new File(decryptedFilePath);
-                    decryptedFile.renameTo(selectedFile);
+                    // try to rename & override old file
+                    boolean b = decryptedFile.renameTo(selectedFile);
+                    // if rename & override failed, do it by hand
+                    if (!b){
+                        // delete old file (selectedFile)
+                        if (selectedFile.delete()){
+                            // rename decrypted file to selected file
+                            decryptedFile.renameTo(selectedFile);
+                        }else {
+                            // handler delete failed
+                            // keep everything
+                        }
+                    }
                 }
             }else if (result == DecrypterStatus.NOT_ENCRYPTED_FILE){
                 jLabelStatus.setText(I18NNotifications.notEncryptedFileText);
