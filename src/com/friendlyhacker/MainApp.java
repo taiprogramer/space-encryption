@@ -69,7 +69,7 @@ public class MainApp extends javax.swing.JFrame {
         jLabelStatusLabel = new javax.swing.JLabel();
         jCheckBoxKeepOriginalFile = new javax.swing.JCheckBox();
         jCheckBoxShowPassword = new javax.swing.JCheckBox();
-        jLabelPassword1 = new javax.swing.JLabel();
+        jLabelPathFile = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemChooseFile = new javax.swing.JMenuItem();
@@ -141,9 +141,9 @@ public class MainApp extends javax.swing.JFrame {
             }
         });
 
-        jLabelPassword1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelPassword1.setText("File path");
-        jLabelPassword1.setName("jLabelPassword"); // NOI18N
+        jLabelPathFile.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPathFile.setText("File path");
+        jLabelPathFile.setName("jLabelPathFile"); // NOI18N
 
         jMenuFile.setText("File");
         jMenuFile.setName("jMenuFile"); // NOI18N
@@ -216,7 +216,7 @@ public class MainApp extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelPassword1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                .addComponent(jLabelPathFile, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -240,7 +240,7 @@ public class MainApp extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonChooseFile)
-                    .addComponent(jLabelPassword1))
+                    .addComponent(jLabelPathFile))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,6 +277,7 @@ public class MainApp extends javax.swing.JFrame {
         components.add(jLabelStatusLabel);
         components.add(jCheckBoxKeepOriginalFile);
         components.add(jCheckBoxShowPassword);
+        components.add(jLabelPathFile);
     }
 
     private void jButtonChooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseFileActionPerformed
@@ -476,7 +477,7 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBoxShowPassword;
     private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JLabel jLabelPassword;
-    private javax.swing.JLabel jLabelPassword1;
+    private javax.swing.JLabel jLabelPathFile;
     private javax.swing.JLabel jLabelStatus;
     private javax.swing.JLabel jLabelStatusLabel;
     private javax.swing.JMenu jMenuAbout;
