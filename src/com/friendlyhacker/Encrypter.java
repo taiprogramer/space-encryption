@@ -16,7 +16,7 @@ public class Encrypter {
         ALREADY_ENCRYPTED, SUCCESS
     }
 
-    public static EncryptionStatus encrypt(File file, String password)
+    public static EncryptionStatus encrypt(File file,File encryptedFile, String password)
     throws FileNotFoundException, IOException {
         // hold data that read from file.
         String line;
@@ -34,13 +34,6 @@ public class Encrypter {
             // config encrypted file
             // format: sefh.[filename]
             // sefh: stands for Space Encryption Friendly Hacker
-            String encryptedFilePath = new 
-                StringBuilder(file.getParent())
-                .append(System.getProperty("file.separator"))
-                .append("sefh.")
-                .append(file.getName())
-                .toString();
-            File encryptedFile = new File(encryptedFilePath);
             encryptedFile.createNewFile();
             // __Get encrypt information
             String randomPassword = generateRandomPassword();

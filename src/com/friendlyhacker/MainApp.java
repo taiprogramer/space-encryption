@@ -32,6 +32,8 @@ public class MainApp extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 3909748189297971457L;
     private static File selectedFile = null;
+    private static File encryptedFile = null;
+    private static File decryptedFile = null;
     // list of all components -> i18n support
     private static ArrayList<JComponent> components = new ArrayList<>();
 
@@ -284,20 +286,19 @@ public class MainApp extends javax.swing.JFrame {
         }
         jLabelStatus.setText(I18NNotifications.encryptingText);
         try {
-            EncryptionStatus result = encrypt(selectedFile, new String(jPasswordField.getPassword()));
-            if (result == EncryptionStatus.SUCCESS){
-                jLabelStatus.setText(I18NNotifications.encryptSuccessText);
-                // if success, keep original file option check
-                if (!jCheckBoxKeepOriginalFile.isSelected()){
-                    // rename encrypted file, override original file
-                    // get encrypted file path
-                    String encryptedFilePath = new 
+            String encryptedFilePath = new 
                         StringBuilder(selectedFile.getParent())
                         .append(System.getProperty("file.separator"))
                         .append("sefh.")
                         .append(selectedFile.getName())
                         .toString();
-                    File encryptedFile = new File(encryptedFilePath);
+            encryptedFile = new File(encryptedFilePath);
+            EncryptionStatus result = encrypt(selectedFile, encryptedFile, new String(jPasswordField.getPassword()));
+            if (result == EncryptionStatus.SUCCESS){
+                jLabelStatus.setText(I18NNotifications.encryptSuccessText);
+                // if success, keep original file option check
+                if (!jCheckBoxKeepOriginalFile.isSelected()){
+                    // rename encrypted file, override original file
                     // try to rename & override old file
                     boolean b = encryptedFile.renameTo(selectedFile);
                     // if rename & override failed, do it by hand
@@ -329,20 +330,19 @@ public class MainApp extends javax.swing.JFrame {
         }
         jLabelStatus.setText(I18NNotifications.decryptingText);
         try {
-            DecrypterStatus result = decrypt(selectedFile, new String(jPasswordField.getPassword()));
-            if (result == DecrypterStatus.SUCCESS){
-                jLabelStatus.setText(I18NNotifications.decryptSuccessText);
-                // if success, keep original file option check
-                if (!jCheckBoxKeepOriginalFile.isSelected()){
-                    // rename decrypted file, override original file
-                    // get decrypted file path
-                    String decryptedFilePath = new 
+            String decryptedFilePath = new 
                         StringBuilder(selectedFile.getParent())
                         .append(System.getProperty("file.separator"))
                         .append("de.")
                         .append(selectedFile.getName())
                         .toString();
-                    File decryptedFile = new File(decryptedFilePath);
+            decryptedFile = new File(decryptedFilePath);
+            DecrypterStatus result = decrypt(selectedFile, decryptedFile, new String(jPasswordField.getPassword()));
+            if (result == DecrypterStatus.SUCCESS){
+                jLabelStatus.setText(I18NNotifications.decryptSuccessText);
+                // if success, keep original file option check
+                if (!jCheckBoxKeepOriginalFile.isSelected()){
+                    // rename decrypted file, override original file
                     // try to rename & override old file
                     boolean b = decryptedFile.renameTo(selectedFile);
                     // if rename & override failed, do it by hand

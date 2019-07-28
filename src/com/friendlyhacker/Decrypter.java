@@ -16,7 +16,7 @@ public class Decrypter {
         NOT_ENCRYPTED_FILE, SUCCESS, WRONG_PASSWORD
     }
 
-    public static DecrypterStatus decrypt(File file, String password)
+    public static DecrypterStatus decrypt(File file,File decryptedFile, String password)
     throws FileNotFoundException, IOException{
 
         // hold text data from file
@@ -57,15 +57,6 @@ public class Decrypter {
                 return DecrypterStatus.WRONG_PASSWORD;
             }
             // config decrypt file
-            // format: de.[filename]
-            // de: stands for decryption
-            String decryptedFilePath = new 
-                StringBuilder(file.getParent())
-                .append(System.getProperty("file.separator"))
-                .append("de.")
-                .append(file.getName())
-                .toString();
-            File decryptedFile = new File(decryptedFilePath);
             decryptedFile.createNewFile();
             // decrypt line by line, write to file via PrintWriter
             try(PrintWriter printWriter = 
