@@ -34,6 +34,7 @@ public class MainApp extends javax.swing.JFrame {
     private static File selectedFile = null;
     private static File encryptedFile = null;
     private static File decryptedFile = null;
+    private static String selectedFileAbsolutePath = "";
     // list of all components -> i18n support
     private static ArrayList<JComponent> components = new ArrayList<>();
 
@@ -90,6 +91,12 @@ public class MainApp extends javax.swing.JFrame {
         jButtonChooseFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonChooseFileActionPerformed(evt);
+            }
+        });
+
+        jTextFieldPathFile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPathFileKeyReleased(evt);
             }
         });
 
@@ -273,17 +280,23 @@ public class MainApp extends javax.swing.JFrame {
     }
 
     private void jButtonChooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseFileActionPerformed
-        // test open file
         int result = jFileChooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
-            selectedFile = jFileChooser.getSelectedFile();
-            jTextFieldPathFile.setText(selectedFile.getAbsolutePath());
+            selectedFileAbsolutePath = jFileChooser.getSelectedFile().getAbsolutePath();
+            jTextFieldPathFile.setText(selectedFileAbsolutePath);
         }
     }//GEN-LAST:event_jButtonChooseFileActionPerformed
 
     private void jButtonEncryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncryptActionPerformed
         if (selectedFile == null){
-            jLabelStatus.setText(I18NNotifications.pleaseSelectFileText);
+            if (selectedFileAbsolutePath.equals(new String(""))){
+                jLabelStatus.setText(I18NNotifications.pleaseSelectFileText);
+                return;
+            }
+        }
+        selectedFile = new File(selectedFileAbsolutePath);
+        if (!selectedFile.exists()){
+            jLabelStatus.setText(I18NNotifications.fileNotFoundText);
             return;
         }
         jLabelStatus.setText(I18NNotifications.encryptingText);
@@ -327,7 +340,14 @@ public class MainApp extends javax.swing.JFrame {
 
     private void jButtonDecryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDecryptActionPerformed
         if (selectedFile == null){
-            jLabelStatus.setText(I18NNotifications.pleaseSelectFileText);
+            if (selectedFileAbsolutePath.equals(new String(""))){
+                jLabelStatus.setText(I18NNotifications.pleaseSelectFileText);
+                return;
+            }
+        }
+        selectedFile = new File(selectedFileAbsolutePath);
+        if (!selectedFile.exists()){
+            jLabelStatus.setText(I18NNotifications.fileNotFoundText);
             return;
         }
         jLabelStatus.setText(I18NNotifications.decryptingText);
@@ -400,6 +420,10 @@ public class MainApp extends javax.swing.JFrame {
             jPasswordField.setEchoChar('*');
         }
     }//GEN-LAST:event_jCheckBoxShowPasswordItemStateChanged
+
+    private void jTextFieldPathFileKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPathFileKeyReleased
+        selectedFileAbsolutePath = jTextFieldPathFile.getText();
+    }//GEN-LAST:event_jTextFieldPathFileKeyReleased
 
     /* taiprogramer's util functions */
     private void set_languages(Locale locale) {

@@ -194,6 +194,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldPathFile">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldPathFileKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonEncrypt">
       <Properties>
