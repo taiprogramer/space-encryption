@@ -28,3 +28,4 @@ This program has been tested with [big-text-file](https://norvig.com/big.txt).
 ## Contributors
 - Nguyen Duy Kha (Inventor)
 - taiprogramer (Java GUI Clone)
+- Huynh Danh Lang (Designer)
