@@ -12,8 +12,10 @@ import java.awt.event.ItemEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
 
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -30,12 +32,21 @@ public class MainApp extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 3909748189297971457L;
     private static File selectedFile = null;
+    private static File encryptedFile = null;
+    private static File decryptedFile = null;
+    private static String selectedFileAbsolutePath = "";
+    // list of all components -> i18n support
+    private static ArrayList<JComponent> components = new ArrayList<>();
 
     /**
      * Creates new form MainApp
      */
     public MainApp() {
         initComponents();
+        // center this frame
+        this.setLocationRelativeTo(null);
+        // add all components to list of components
+        storeComponents();
         set_languages(new Locale("", ""));
     }
 
@@ -58,6 +69,9 @@ public class MainApp extends javax.swing.JFrame {
         jLabelPassword = new javax.swing.JLabel();
         jPasswordField = new javax.swing.JPasswordField();
         jLabelStatusLabel = new javax.swing.JLabel();
+        jCheckBoxKeepOriginalFile = new javax.swing.JCheckBox();
+        jCheckBoxShowPassword = new javax.swing.JCheckBox();
+        jLabelPathFile = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemChooseFile = new javax.swing.JMenuItem();
@@ -70,45 +84,76 @@ public class MainApp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Space Encryption");
+        setPreferredSize(new java.awt.Dimension(590, 270));
+        setResizable(false);
+        setSize(new java.awt.Dimension(590, 270));
 
+        jButtonChooseFile.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonChooseFile.setText("Choose File");
+        jButtonChooseFile.setName("jButtonChooseFile"); // NOI18N
         jButtonChooseFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonChooseFileActionPerformed(evt);
             }
         });
 
-        jTextFieldPathFile.setEditable(false);
+        jTextFieldPathFile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPathFileKeyReleased(evt);
+            }
+        });
 
-        jButtonEncrypt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButtonEncrypt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonEncrypt.setText("Encrypt");
+        jButtonEncrypt.setName("jButtonEncrypt"); // NOI18N
         jButtonEncrypt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEncryptActionPerformed(evt);
             }
         });
 
-        jButtonDecrypt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButtonDecrypt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonDecrypt.setText("Decrypt");
+        jButtonDecrypt.setName("jButtonDecrypt"); // NOI18N
         jButtonDecrypt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDecryptActionPerformed(evt);
             }
         });
 
-        jLabelStatus.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabelStatus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jLabelPassword.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPassword.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelPassword.setText("Password:");
+        jLabelPassword.setName("jLabelPassword"); // NOI18N
 
-        jPasswordField.setText("RepublicofVietNam");
+        jPasswordField.setText("FriendlyHacker");
 
-        jLabelStatusLabel.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabelStatusLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelStatusLabel.setText("Status:");
+        jLabelStatusLabel.setName("jLabelStatusLabel"); // NOI18N
+
+        jCheckBoxKeepOriginalFile.setText("Keep original file");
+        jCheckBoxKeepOriginalFile.setName("jCheckBoxKeepOriginalFile"); // NOI18N
+
+        jCheckBoxShowPassword.setText("Show password");
+        jCheckBoxShowPassword.setName("jCheckBoxShowPassword"); // NOI18N
+        jCheckBoxShowPassword.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBoxShowPasswordItemStateChanged(evt);
+            }
+        });
+
+        jLabelPathFile.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelPathFile.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelPathFile.setText("File path:");
+        jLabelPathFile.setName("jLabelPathFile"); // NOI18N
 
         jMenuFile.setText("File");
+        jMenuFile.setName("jMenuFile"); // NOI18N
 
         jMenuItemChooseFile.setText("Choose file");
+        jMenuItemChooseFile.setName("jMenuItemChooseFile"); // NOI18N
         jMenuItemChooseFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemChooseFileActionPerformed(evt);
@@ -119,11 +164,11 @@ public class MainApp extends javax.swing.JFrame {
         jMenuBar.add(jMenuFile);
 
         jMenuLanguage.setText("Language");
-        jMenuLanguage.setName(""); // NOI18N
+        jMenuLanguage.setName("jMenuLanguage"); // NOI18N
 
         buttonGroupLanguages.add(jRadioButtonMenuItemVietnamese);
         jRadioButtonMenuItemVietnamese.setText("Vietnamese");
-        jRadioButtonMenuItemVietnamese.setName(""); // NOI18N
+        jRadioButtonMenuItemVietnamese.setName("jRadioButtonMenuItemVietnamese"); // NOI18N
         jRadioButtonMenuItemVietnamese.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jRadioButtonMenuItemVietnameseItemStateChanged(evt);
@@ -134,7 +179,7 @@ public class MainApp extends javax.swing.JFrame {
         buttonGroupLanguages.add(jRadioButtonMenuItemEnglish);
         jRadioButtonMenuItemEnglish.setSelected(true);
         jRadioButtonMenuItemEnglish.setText("English");
-        jRadioButtonMenuItemEnglish.setName(""); // NOI18N
+        jRadioButtonMenuItemEnglish.setName("jRadioButtonMenuItemEnglish"); // NOI18N
         jRadioButtonMenuItemEnglish.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jRadioButtonMenuItemEnglishItemStateChanged(evt);
@@ -145,6 +190,7 @@ public class MainApp extends javax.swing.JFrame {
         jMenuBar.add(jMenuLanguage);
 
         jMenuAbout.setText("About");
+        jMenuAbout.setName("jMenuAbout"); // NOI18N
         jMenuAbout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenuAboutMouseClicked(evt);
@@ -161,74 +207,127 @@ public class MainApp extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelPassword))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxShowPassword)
+                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBoxKeepOriginalFile)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonChooseFile))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelStatusLabel)
+                                .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(110, 110, 110)
-                                        .addComponent(jButtonEncrypt)
-                                        .addGap(51, 51, 51)
-                                        .addComponent(jButtonDecrypt))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jButtonDecrypt)
+                                    .addComponent(jButtonChooseFile)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabelPassword)
-                        .addGap(38, 38, 38)
-                        .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabelStatusLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonEncrypt)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonChooseFile))
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelPassword))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEncrypt)
-                    .addComponent(jButtonDecrypt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonChooseFile)
+                        .addComponent(jLabelPathFile))
+                    .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPassword)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCheckBoxShowPassword)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCheckBoxKeepOriginalFile)
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButtonEncrypt)
+                                .addComponent(jButtonDecrypt))))
+                    .addComponent(jLabelStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void storeComponents(){
+        components.add(jMenuFile);
+        components.add(jMenuItemChooseFile);
+        components.add(jMenuLanguage);
+        components.add(jRadioButtonMenuItemVietnamese);
+        components.add(jRadioButtonMenuItemEnglish);
+        components.add(jMenuAbout);
+        components.add(jButtonChooseFile);
+        components.add(jButtonEncrypt);
+        components.add(jButtonDecrypt);
+        components.add(jLabelPassword);
+        components.add(jLabelStatusLabel);
+        components.add(jCheckBoxKeepOriginalFile);
+        components.add(jCheckBoxShowPassword);
+        components.add(jLabelPathFile);
+    }
+
     private void jButtonChooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseFileActionPerformed
-        // test open file
         int result = jFileChooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
-            selectedFile = jFileChooser.getSelectedFile();
-            jTextFieldPathFile.setText(selectedFile.getAbsolutePath());
+            selectedFileAbsolutePath = jFileChooser.getSelectedFile().getAbsolutePath();
+            jTextFieldPathFile.setText(selectedFileAbsolutePath);
         }
     }//GEN-LAST:event_jButtonChooseFileActionPerformed
 
     private void jButtonEncryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncryptActionPerformed
         if (selectedFile == null){
-            jLabelStatus.setText(I18NNotifications.pleaseSelectFileText);
+            if (selectedFileAbsolutePath.equals(new String(""))){
+                jLabelStatus.setText(I18NNotifications.pleaseSelectFileText);
+                return;
+            }
+        }
+        selectedFile = new File(selectedFileAbsolutePath);
+        if (!selectedFile.exists()){
+            jLabelStatus.setText(I18NNotifications.fileNotFoundText);
             return;
         }
         jLabelStatus.setText(I18NNotifications.encryptingText);
         try {
-            EncryptionStatus result = encrypt(selectedFile, new String(jPasswordField.getPassword()));
+            String encryptedFilePath = new 
+                        StringBuilder(selectedFile.getParent())
+                        .append(System.getProperty("file.separator"))
+                        .append("sefh.")
+                        .append(selectedFile.getName())
+                        .toString();
+            encryptedFile = new File(encryptedFilePath);
+            EncryptionStatus result = encrypt(selectedFile, encryptedFile, new String(jPasswordField.getPassword()));
             if (result == EncryptionStatus.SUCCESS){
                 jLabelStatus.setText(I18NNotifications.encryptSuccessText);
+                // if success, keep original file option check
+                if (!jCheckBoxKeepOriginalFile.isSelected()){
+                    // rename encrypted file, override original file
+                    // try to rename & override old file
+                    boolean b = encryptedFile.renameTo(selectedFile);
+                    // if rename & override failed, do it by hand
+                    if (!b){
+                        // delete old file (selectedFile)
+                        if (selectedFile.delete()){
+                            // rename encrypted file to selected file
+                            encryptedFile.renameTo(selectedFile);
+                        }else {
+                            // handler delete failed
+                            // keep everything
+                        }
+                    }
+                }
             }else if (result == EncryptionStatus.ALREADY_ENCRYPTED){
                 jLabelStatus.setText(I18NNotifications.alreadyEncryptedText);
             }
@@ -241,14 +340,45 @@ public class MainApp extends javax.swing.JFrame {
 
     private void jButtonDecryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDecryptActionPerformed
         if (selectedFile == null){
-            jLabelStatus.setText(I18NNotifications.pleaseSelectFileText);
+            if (selectedFileAbsolutePath.equals(new String(""))){
+                jLabelStatus.setText(I18NNotifications.pleaseSelectFileText);
+                return;
+            }
+        }
+        selectedFile = new File(selectedFileAbsolutePath);
+        if (!selectedFile.exists()){
+            jLabelStatus.setText(I18NNotifications.fileNotFoundText);
             return;
         }
         jLabelStatus.setText(I18NNotifications.decryptingText);
         try {
-            DecrypterStatus result = decrypt(selectedFile, new String(jPasswordField.getPassword()));
+            String decryptedFilePath = new 
+                        StringBuilder(selectedFile.getParent())
+                        .append(System.getProperty("file.separator"))
+                        .append("de.")
+                        .append(selectedFile.getName())
+                        .toString();
+            decryptedFile = new File(decryptedFilePath);
+            DecrypterStatus result = decrypt(selectedFile, decryptedFile, new String(jPasswordField.getPassword()));
             if (result == DecrypterStatus.SUCCESS){
                 jLabelStatus.setText(I18NNotifications.decryptSuccessText);
+                // if success, keep original file option check
+                if (!jCheckBoxKeepOriginalFile.isSelected()){
+                    // rename decrypted file, override original file
+                    // try to rename & override old file
+                    boolean b = decryptedFile.renameTo(selectedFile);
+                    // if rename & override failed, do it by hand
+                    if (!b){
+                        // delete old file (selectedFile)
+                        if (selectedFile.delete()){
+                            // rename decrypted file to selected file
+                            decryptedFile.renameTo(selectedFile);
+                        }else {
+                            // handler delete failed
+                            // keep everything
+                        }
+                    }
+                }
             }else if (result == DecrypterStatus.NOT_ENCRYPTED_FILE){
                 jLabelStatus.setText(I18NNotifications.notEncryptedFileText);
             }else if (result == DecrypterStatus.WRONG_PASSWORD){
@@ -283,21 +413,22 @@ public class MainApp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jRadioButtonMenuItemEnglishItemStateChanged
 
+    private void jCheckBoxShowPasswordItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxShowPasswordItemStateChanged
+         if (evt.getStateChange() == ItemEvent.SELECTED) {
+            jPasswordField.setEchoChar((char) 0);
+        } else {
+            jPasswordField.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jCheckBoxShowPasswordItemStateChanged
+
+    private void jTextFieldPathFileKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPathFileKeyReleased
+        selectedFileAbsolutePath = jTextFieldPathFile.getText();
+    }//GEN-LAST:event_jTextFieldPathFileKeyReleased
+
     /* taiprogramer's util functions */
     private void set_languages(Locale locale) {
-        I18NComponents.setLanguage(locale);
+        I18NComponents.setLanguage(locale, components);
         I18NNotifications.setLanguage(locale);
-        jMenuFile.setText(I18NComponents.jMenuFileText);
-        jMenuItemChooseFile.setText(I18NComponents.jMenuItemChooseFileText);
-        jMenuLanguage.setText(I18NComponents.jMenuLanguageText);
-        jRadioButtonMenuItemVietnamese.setText(I18NComponents.jRadioButtonMenuItemVietnameseText);
-        jRadioButtonMenuItemEnglish.setText(I18NComponents.jRadioButtonMenuItemEnglishText);
-        jMenuAbout.setText(I18NComponents.jMenuAboutText);
-        jLabelPassword.setText(I18NComponents.jLabelPasswordText);
-        jLabelStatusLabel.setText(I18NComponents.jLabelStatusLabelText);
-        jButtonChooseFile.setText(I18NComponents.jButtonChooseFileText);
-        jButtonEncrypt.setText(I18NComponents.jButtonEncryptText);
-        jButtonDecrypt.setText(I18NComponents.jButtonDecryptText);
     }
 
     /**
@@ -341,8 +472,11 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JButton jButtonChooseFile;
     private javax.swing.JButton jButtonDecrypt;
     private javax.swing.JButton jButtonEncrypt;
+    private javax.swing.JCheckBox jCheckBoxKeepOriginalFile;
+    private javax.swing.JCheckBox jCheckBoxShowPassword;
     private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JLabel jLabelPassword;
+    private javax.swing.JLabel jLabelPathFile;
     private javax.swing.JLabel jLabelStatus;
     private javax.swing.JLabel jLabelStatusLabel;
     private javax.swing.JMenu jMenuAbout;
