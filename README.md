@@ -2,7 +2,7 @@
 ## What is it?
 Space Encryption is a simple text-file encryption tool.
 
-![Space Encryption Image](docs/images/space-encryption-image.png)
+![Space Encryption Image](docs/images/space-encryption-app.png)
 
 ## Development environment
 Here is everything you need to build Space Encryption:
