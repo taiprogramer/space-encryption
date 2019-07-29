@@ -43,6 +43,8 @@ public class MainApp extends javax.swing.JFrame {
      */
     public MainApp() {
         initComponents();
+        // center this frame
+        this.setLocationRelativeTo(null);
         // add all components to list of components
         storeComponents();
         set_languages(new Locale("", ""));
@@ -82,10 +84,11 @@ public class MainApp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Space Encryption");
-        setPreferredSize(new java.awt.Dimension(600, 375));
+        setPreferredSize(new java.awt.Dimension(590, 270));
         setResizable(false);
-        setSize(new java.awt.Dimension(600, 375));
+        setSize(new java.awt.Dimension(590, 270));
 
+        jButtonChooseFile.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonChooseFile.setText("Choose File");
         jButtonChooseFile.setName("jButtonChooseFile"); // NOI18N
         jButtonChooseFile.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +103,7 @@ public class MainApp extends javax.swing.JFrame {
             }
         });
 
-        jButtonEncrypt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButtonEncrypt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonEncrypt.setText("Encrypt");
         jButtonEncrypt.setName("jButtonEncrypt"); // NOI18N
         jButtonEncrypt.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +112,7 @@ public class MainApp extends javax.swing.JFrame {
             }
         });
 
-        jButtonDecrypt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButtonDecrypt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonDecrypt.setText("Decrypt");
         jButtonDecrypt.setName("jButtonDecrypt"); // NOI18N
         jButtonDecrypt.addActionListener(new java.awt.event.ActionListener() {
@@ -118,15 +121,15 @@ public class MainApp extends javax.swing.JFrame {
             }
         });
 
-        jLabelStatus.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabelStatus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jLabelPassword.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPassword.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelPassword.setText("Password:");
         jLabelPassword.setName("jLabelPassword"); // NOI18N
 
-        jPasswordField.setText("RepublicofVietNam");
+        jPasswordField.setText("FriendlyHacker");
 
-        jLabelStatusLabel.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabelStatusLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelStatusLabel.setText("Status:");
         jLabelStatusLabel.setName("jLabelStatusLabel"); // NOI18N
 
@@ -141,8 +144,9 @@ public class MainApp extends javax.swing.JFrame {
             }
         });
 
-        jLabelPathFile.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelPathFile.setText("File path");
+        jLabelPathFile.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelPathFile.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelPathFile.setText("File path:");
         jLabelPathFile.setName("jLabelPathFile"); // NOI18N
 
         jMenuFile.setText("File");
@@ -203,61 +207,56 @@ public class MainApp extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(208, 208, 208)
-                        .addComponent(jButtonEncrypt)
-                        .addGap(51, 51, 51)
-                        .addComponent(jButtonDecrypt))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabelPassword)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelPassword))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxShowPassword)
+                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBoxKeepOriginalFile)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelPathFile, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelStatusLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(18, 18, 18)
-                .addComponent(jButtonChooseFile)
-                .addGap(35, 35, 35))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jCheckBoxShowPassword)
-                .addGap(31, 31, 31)
-                .addComponent(jCheckBoxKeepOriginalFile)
-                .addGap(142, 142, 142))
+                                .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonDecrypt)
+                                    .addComponent(jButtonChooseFile)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabelStatusLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonEncrypt)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonChooseFile)
-                    .addComponent(jLabelPathFile))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelPassword))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBoxKeepOriginalFile)
-                    .addComponent(jCheckBoxShowPassword))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEncrypt)
-                    .addComponent(jButtonDecrypt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonChooseFile)
+                        .addComponent(jLabelPathFile))
+                    .addComponent(jTextFieldPathFile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPassword)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCheckBoxShowPassword)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCheckBoxKeepOriginalFile)
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButtonEncrypt)
+                                .addComponent(jButtonDecrypt))))
+                    .addComponent(jLabelStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8))
         );
 
         pack();
