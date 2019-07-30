@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -37,12 +38,18 @@ public class MainApp extends javax.swing.JFrame {
     private static String selectedFileAbsolutePath = "";
     // list of all components -> i18n support
     private static ArrayList<JComponent> components = new ArrayList<>();
+    private static final String pathToAppIcon = "assets/icons/space-encryption-app.jpg";
+    private static ImageIcon appIcon = null;    
 
     /**
      * Creates new form MainApp
      */
     public MainApp() {
         initComponents();
+        // initial app icon
+        appIcon = createImageIcon(pathToAppIcon);
+        // set app icon (title bar)
+        this.setIconImage(appIcon.getImage());
         // center this frame
         this.setLocationRelativeTo(null);
         // add all components to list of components
@@ -262,6 +269,17 @@ public class MainApp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /** Returns an ImageIcon, or null if the path was invalid. */
+    private ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
+
     private void storeComponents(){
         components.add(jMenuFile);
         components.add(jMenuItemChooseFile);
@@ -393,7 +411,10 @@ public class MainApp extends javax.swing.JFrame {
 
     private void jMenuAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAboutMouseClicked
         JOptionPane.showMessageDialog(null,
-                I18NNotifications.aboutAppText
+                I18NNotifications.aboutAppText,
+                jMenuAbout.getText(),
+                JOptionPane.INFORMATION_MESSAGE,
+                appIcon
         );
     }//GEN-LAST:event_jMenuAboutMouseClicked
 
