@@ -50,7 +50,7 @@ public class MainApp extends javax.swing.JFrame {
         appIcon = createImageIcon(pathToAppIcon);
         // set app icon (title bar)
         this.setIconImage(appIcon.getImage());
-        // center this frame
+        // make app appear in the center
         this.setLocationRelativeTo(null);
         // add all components to list of components
         storeComponents();
@@ -274,10 +274,9 @@ public class MainApp extends javax.swing.JFrame {
         java.net.URL imgURL = getClass().getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
+        } 
+        System.err.println("Couldn't find file: " + path);
+        return null;
     }
 
     private void storeComponents(){
@@ -435,7 +434,7 @@ public class MainApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonMenuItemEnglishItemStateChanged
 
     private void jCheckBoxShowPasswordItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxShowPasswordItemStateChanged
-         if (evt.getStateChange() == ItemEvent.SELECTED) {
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
             jPasswordField.setEchoChar((char) 0);
         } else {
             jPasswordField.setEchoChar('*');
