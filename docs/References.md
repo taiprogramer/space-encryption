@@ -17,3 +17,6 @@
 - [Custom Icon JOptionPane](https://stackoverflow.com/questions/6975736/java-joptionpane-showmessagedialog-custom-icon-problem)
 - [Icon in Java](https://docs.oracle.com/javase/tutorial/uiswing/components/icon.html)
 - [How to change JFrame icon](https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon)
+- [Create jre from OpenJDK Windows - Stack Overflow](https://stackoverflow.com/questions/51403071/create-jre-from-openjdk-windows)
+- [How To Convert A Java .jar File To .exe File With Bundle JRE || And Also How To Make Installer
+](https://www.youtube.com/watch?v=rqcpqhgLRGM)
