@@ -13,8 +13,7 @@ java -jar SpaceEncryption.jar
 ```
 
 ## For developers
-- See [History of Development](./docs/CHANGELOG.md)
-- See [References.md](./docs/References.md)
+- Checkout [documentation](./docs/README.md)
 
 ### Development environment
 Here is everything we use to build Space Encryption:
