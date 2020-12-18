@@ -1,4 +1,7 @@
 # Space Encryption
+
+:warning: **DO NOT** use this tool for production. Use only for demonstration and learning.
+
 ## What is it?
 Space Encryption is a simple text-file encryption tool.
 
